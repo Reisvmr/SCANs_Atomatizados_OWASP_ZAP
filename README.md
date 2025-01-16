@@ -1,106 +1,106 @@
 ## Projeto: Automação de Escaneamento de Segurança com OWASP ZAP
 
-## **Descrição do Projeto**
+### **Descrição do Projeto**
 
-## Este projeto tem como objetivo automatizar o escaneamento de segurança de aplicações web utilizando o OWASP ZAP (Zed Attack Proxy) em um contêiner Docker. O script desenvolvido permite executar escaneamentos completos, gerando relatórios detalhados com base no domínio do site e incluindo a data e hora do escaneamento no nome do arquivo de saída. Agora, o script também gera logs com informações sobre o sucesso ou falha do escaneamento, o tempo total de execução e permite configurar se os testes ativos serão realizados ou não. Caso nenhum parâmetro seja fornecido, o script executa o escaneamento completo (incluindo testes ativos).
+Este projeto tem como objetivo automatizar o escaneamento de segurança de aplicações web utilizando o OWASP ZAP (Zed Attack Proxy) em um contêiner Docker. O script desenvolvido permite executar escaneamentos completos, gerando relatórios detalhados com base no domínio do site e incluindo a data e hora do escaneamento no nome do arquivo de saída. Agora, o script também gera logs com informações sobre o sucesso ou falha do escaneamento, o tempo total de execução e permite configurar se os testes ativos serão realizados ou não. Caso nenhum parâmetro seja fornecido, o script executa o escaneamento completo (incluindo testes ativos).
 
 * * *
 
 ## **Recursos Utilizados**
 
-- ### **Docker**
+-  **Docker**
     
-- ### **Imagem do OWASP ZAP:** `ghcr.io/zaproxy/zaproxy:stable`
+-  **Imagem do OWASP ZAP:** `ghcr.io/zaproxy/zaproxy:stable`
     
-- ### **Shell Script (Bash)**
+-  **Shell Script (Bash)**
     
 
 * * *
 
 ## **Requisitos de Servidor para o OWASP ZAP (em Produção):**
 
-1.  ### **Memória RAM:**
+1.   **Memória RAM:**
     
     - ### Mínimo de 4** GB** (recomendado 8 GB ou mais para um desempenho ideal).
         
-2.  ### **Processador:**
+2.   **Processador:**
     
-    - ### Mínimo de 4** núcleos** (recomendado 8 núcleos ou mais para suportar análises simultâneas).
+    -  Mínimo de 4** núcleos** (recomendado 8 núcleos ou mais para suportar análises simultâneas).
         
-3.  ### **Espaço em Disco:**
+3.   **Espaço em Disco:**
     
-    - ### Mínimo de **100 GB** para armazenar os dados e logs do ZAP (dependendo da intensidade dos testes, mais espaço pode ser necessário).
+    -  Mínimo de **100 GB** para armazenar os dados e logs do ZAP (dependendo da intensidade dos testes, mais espaço pode ser necessário).
         
-4.  ### **Sistema Operacional: Homologado no RED HAT 9**
+4.   **Sistema Operacional: Homologado no RED HAT 9**
     
 
 * * *
 
 ## **Funcionalidades**
 
-1.  ### Aceita a URL do site como parâmetro na execução do script.
+1.   Aceita a URL do site como parâmetro na execução do script.
     
-2.  ### Permite definir se os testes ativos serão realizados durante a execução.
+2.   Permite definir se os testes ativos serão realizados durante a execução.
     
-3.  ### Executa um escaneamento completo por padrão, caso nenhum tipo de teste seja especificado.
+3.   Executa um escaneamento completo por padrão, caso nenhum tipo de teste seja especificado.
     
-4.  ### Extrai automaticamente o domínio da URL fornecida.
+4.   Extrai automaticamente o domínio da URL fornecida.
     
-5.  ### Gera relatórios HTML ou XML  nomeados com base no domínio e na data/hora do escaneamento.
+5.   Gera relatórios HTML ou XML  nomeados com base no domínio e na data/hora do escaneamento.
     
-6.  ### Cria automaticamente um arquivo de variáveis para o Docker com a URL do site.
+6.   Cria automaticamente um arquivo de variáveis para o Docker com a URL do site.
     
-7.  ### Gera logs detalhados da execução, incluindo sucesso/falha e o tempo total de execução.
+7.   Gera logs detalhados da execução, incluindo sucesso/falha e o tempo total de execução.
     
-8.  ### Envia um e-mail com o relatório em anexo no final da analise.
+8.   Envia um e-mail com o relatório em anexo no final da analise.
     
 
 * * *
 
 ## **Testes Realizados pelo OWASP ZAP**
 
-## O OWASP ZAP realiza os seguintes testes de segurança durante o escaneamento:
+### O OWASP ZAP realiza os seguintes testes de segurança durante o escaneamento:
 
-1.  ### **Spidering (Mapeamento):** Navega pelo site para identificar todos os endpoints e links disponíveis.
+1.   **Spidering (Mapeamento):** Navega pelo site para identificar todos os endpoints e links disponíveis.
     
-2.  ### **Escaneamento Passivo:**
+2.   **Escaneamento Passivo:**
     
-    - ### Detecta vulnerabilidades em respostas HTTP sem interagir diretamente com a aplicação.
+    -  Detecta vulnerabilidades em respostas HTTP sem interagir diretamente com a aplicação.
         
-    - ### Exemplos: Cabeçalhos inseguros, cookies mal configurados, falhas de políticas de segurança.
+    -  Exemplos: Cabeçalhos inseguros, cookies mal configurados, falhas de políticas de segurança.
         
-3.  ### **Escaneamento Ativo (opcional):**
+3.   **Escaneamento Ativo (opcional):**
     
-    - ### Realiza testes intrusivos para identificar vulnerabilidades exploráveis.
+    -  Realiza testes intrusivos para identificar vulnerabilidades exploráveis.
         
-    - ### Exemplos: Injeção de SQL, Cross-Site Scripting (XSS), inclusão de arquivos (LFI/RFI).
+    -  Exemplos: Injeção de SQL, Cross-Site Scripting (XSS), inclusão de arquivos (LFI/RFI).
         
-4.  ### **Análise de Autenticação e Sessões:**
+4.   **Análise de Autenticação e Sessões:**
     
-    - ### Verifica falhas no gerenciamento de autenticação e sessões.
+    -  Verifica falhas no gerenciamento de autenticação e sessões.
         
-    - ### Exemplos: Tokens expostos, falta de logout seguro.
+    -  Exemplos: Tokens expostos, falta de logout seguro.
         
-5.  ### **Políticas de Segurança:**
+5.  **Políticas de Segurança:**
     
-    - ### Avalia a ausência de práticas recomendadas, como o uso de HTTPS ou Content Security Policy (CSP).
+    -  Avalia a ausência de práticas recomendadas, como o uso de HTTPS ou Content Security Policy (CSP).
         
 
 * * *
 
 ## **Problemas Comuns no Modo Ativo**
 
-## Ao utilizar o modo ativo do OWASP ZAP, o site pode sair do ar devido à carga excessiva ou à natureza disruptiva dos testes. Abaixo estão algumas causas comuns e soluções sugeridas:
+### Ao utilizar o modo ativo do OWASP ZAP, o site pode sair do ar devido à carga excessiva ou à natureza disruptiva dos testes. Abaixo estão algumas causas comuns e soluções sugeridas:
 
-## **Causas Comuns**
+### **Causas Comuns**
 
-1.  ### **Carga excessiva:** O modo ativo pode gerar muitas requisições simultâneas, sobrecarregando o servidor.
+1.   **Carga excessiva:** O modo ativo pode gerar muitas requisições simultâneas, sobrecarregando o servidor.
     
-2.  ### **Testes disruptivos:** Alguns testes simulam vulnerabilidades críticas que podem causar falhas em servidores mal configurados.
+2.   **Testes disruptivos:** Alguns testes simulam vulnerabilidades críticas que podem causar falhas em servidores mal configurados.
     
-3.  ### **Limitações no ambiente do servidor:** Recursos insuficientes (CPU, memória ou banda) podem não suportar a carga gerada.
+3.   **Limitações no ambiente do servidor:** Recursos insuficientes (CPU, memória ou banda) podem não suportar a carga gerada.
     
-4.  ### **Reações de segurança:** Ferramentas como firewalls podem bloquear o tráfego, causando indisponibilidade temporária.
+4.   **Reações de segurança:** Ferramentas como firewalls podem bloquear o tráfego, causando indisponibilidade temporária.
     
 
 ## **Soluções Sugeridas**
@@ -127,15 +127,15 @@ activeScan.inputVector.delay=1000 # Em milissegundos
 
 ## 3\. **Testar em um ambiente de homologação**
 
-## Evite escanear diretamente o ambiente de produção. Use uma cópia do site ou um ambiente de homologação para realizar testes ativos.
+ Evite escanear diretamente o ambiente de produção. Use uma cópia do site ou um ambiente de homologação para realizar testes ativos.
 
-## 4\. **Executar os testes ativos em etapas**
+ 4\. **Executar os testes ativos em etapas**
 
-## Divida os testes ativos em lotes menores para reduzir a carga no servidor:
+ Divida os testes ativos em lotes menores para reduzir a carga no servidor:
 
-- ### Teste páginas específicas.
+-  Teste páginas específicas.
     
-- ### Exclua endpoints críticos que não precisam ser testados.
+-  Exclua endpoints críticos que não precisam ser testados.
     
 
 ## Para excluir URLs específicas, adicione no arquivo de configuração:
@@ -144,48 +144,48 @@ activeScan.inputVector.delay=1000 # Em milissegundos
 excludeFromScan=https://www.exemplo.com/admin
 ```
 
-## 5\. **Monitorar os recursos do servidor**
+ 5\. **Monitorar os recursos do servidor**
 
-## Monitore o uso de CPU, memória e banda do servidor durante o escaneamento com ferramentas como Zabbix, Grafana ou comandos nativos (`top`, `htop`, etc.).
-
-* * *
-
-## **Configuração dos Tipos de Escaneamento**
-
-## Para configurar os tipos de escaneamento realizados pelo OWASP ZAP, você pode definir diretamente no momento da execução do script se os testes ativos devem ser habilitados, ou permitir que o script execute um escaneamento completo por padrão.
-
-## **Parâmetro para Ativar/Desativar Testes Ativos**
-
-## Adicione o segundo parâmetro `--active` ou `--passive` ao executar o script para definir o tipo de escaneamento desejado:
-
-- ### **`--active`:** Habilita testes ativos.
-    
-- ### **`--passive`:** Desativa testes ativos (somente escaneamento passivo e spidering).
-    
-- ### **Nenhum parâmetro:** Executa o escaneamento completo (incluindo testes ativos).
-    
+ Monitore o uso de CPU, memória e banda do servidor durante o escaneamento com ferramentas como Zabbix, Grafana ou comandos nativos (`top`, `htop`, etc.).
 
 * * *
 
-## **Estrutura do Projeto**
+ **Configuração dos Tipos de Escaneamento**
+
+ Para configurar os tipos de escaneamento realizados pelo OWASP ZAP, você pode definir diretamente no momento da execução do script se os testes ativos devem ser habilitados, ou permitir que o script execute um escaneamento completo por padrão.
+
+ **Parâmetro para Ativar/Desativar Testes Ativos**
+
+### Adicione o segundo parâmetro `--active` ou `--passive` ao executar o script para definir o tipo de escaneamento desejado:
+
+-  **`--active`:** Habilita testes ativos.
+    
+-  **`--passive`:** Desativa testes ativos (somente escaneamento passivo e spidering).
+    
+-  **Nenhum parâmetro:** Executa o escaneamento completo (incluindo testes ativos).
+    
+
+* * *
+
+### **Estrutura do Projeto**
 
 ## **Arquivos Criados**
 
-1.  ### **Script Principal:** `zap_scan.sh`
+1.   **Script Principal:** `zap_scan.sh`
     
-    - ### Realiza todo o processo de escaneamento, geração de relatórios e criação de logs.
+    -  Realiza todo o processo de escaneamento, geração de relatórios e criação de logs.
         
-2.  ### **Arquivo de Variáveis:** `variables.env`
+2. **Arquivo de Variáveis:** `variables.env`
     
-    - ### Armazena a URL do site a ser escaneado e a configuração de testes ativos.
+    -  Armazena a URL do site a ser escaneado e a configuração de testes ativos.
         
-3.  ### **Logs Gerados:**
+3.   **Logs Gerados:**
     
-    - ### Arquivos de log no formato `<domínio>_scan_<data_hora>.log`.
+    -  Arquivos de log no formato `<domínio>_scan_<data_hora>.log`.
         
-4.  ### **Relatórios Gerados:**
+4.   **Relatórios Gerados:**
     
-    - ### Relatórios no formato HTML com nomes no padrão `<domínio>_scan_<data_hora>.html`.
+    -  Relatórios no formato HTML com nomes no padrão `<domínio>_scan_<data_hora>.html`.
         
 
 * * *
@@ -194,15 +194,15 @@ excludeFromScan=https://www.exemplo.com/admin
 
 1.  ### **Instalações**
     
-    - ### Certifique-se de que o Docker está instalado e funcionando em sua máquina. Para instalar o Docker, siga as instruções disponíveis em [Docker Documentation](https://docs.docker.com/get-docker/).
+    -  Certifique-se de que o Docker está instalado e funcionando em sua máquina. Para instalar o Docker, siga as instruções disponíveis em [Docker Documentation](https://docs.docker.com/get-docker/).
         
-    - ### Inalação do Postfix [How to install and configure Postfix](https://www.redhat.com/en/blog/install-configure-postfix)
+    -  Inalação do Postfix [How to install and configure Postfix](https://www.redhat.com/en/blog/install-configure-postfix)
         
-    - ### Instação do s-nail [Instalação do S-NAIL](https://medium.com/@kemalozz/sending-email-using-s-nail-on-rhel-9-with-enhanced-security-measures-6f15e42cc5d2)
+    -  Instação do s-nail [Instalação do S-NAIL](https://medium.com/@kemalozz/sending-email-using-s-nail-on-rhel-9-with-enhanced-security-measures-6f15e42cc5d2)
         
 2.  ### **Permissão para Executar Scripts:**
     
-    - ### O script deve ter permissões de execução no sistema operacional:
+    -  O script deve ter permissões de execução no sistema operacional:
         
         ```bash
         chmod +x zap_scan.sh
@@ -210,7 +210,7 @@ excludeFromScan=https://www.exemplo.com/admin
         
 3.  ### **Acesso à Internet:**
     
-    - ### O contêiner precisa acessar a internet para interagir com os sites escaneados.
+    -  O contêiner precisa acessar a internet para interagir com os sites escaneados.
         
 
 * * *
@@ -223,15 +223,15 @@ excludeFromScan=https://www.exemplo.com/admin
 
 ## **Passos para Execução**
 
-1.  ### Clone ou copie os arquivos do projeto para o seu sistema.
+1.   Clone ou copie os arquivos do projeto para o seu sistema.
     
-2.  ### Certifique-se de que o script `zap_scan.sh` está com permissão de execução:
+2.  ; Certifique-se de que o script `zap_scan.sh` está com permissão de execução:
     
     ```bash
     chmod +x zap_scan.sh
     ```
     
-3.  ### Execute o script passando a URL do site como primeiro parâmetro e, opcionalmente, o tipo de escaneamento como segundo parâmetro:
+3.   Execute o script passando a URL do site como primeiro parâmetro e, opcionalmente, o tipo de escaneamento como segundo parâmetro:
     
     ```bash
     ./zap_scan.sh <URL_DO_SITE> [<TIPO_DE_TESTE>]
@@ -239,43 +239,43 @@ excludeFromScan=https://www.exemplo.com/admin
     
     ### Exemplos:
     
-    - ### Escaneamento com testes ativos:
+    -  Escaneamento com testes ativos:
         
         ```bash
         ./zap_scan.sh https://www.exemplo.com/ --active
         ```
         
-    - ### Escaneamento passivo (sem testes ativos):
+    -  Escaneamento passivo (sem testes ativos):
         
         ```bash
         ./zap_scan.sh https://www.exemplo.com/ --passive
         ```
         
-    - ### Escaneamento completo (padrão):
+    -  Escaneamento completo (padrão):
         
         ```bash
         ./zap_scan.sh https://www.exemplo.com/
         ```
         
-4.  ### O relatório será gerado no diretório atual com o nome no formato:
+4.   O relatório será gerado no diretório atual com o nome no formato:
     
     ```
     <domínio>_scan_<data_hora>.html
     ```
     
-    ### Exemplo de saída:
+     Exemplo de saída:
     
     ```
     exemplo.com_scan_20250111_154500.html
     ```
     
-5.  ### O log será gerado no diretório atual com o nome no formato:
+5.   O log será gerado no diretório atual com o nome no formato:
     
     ```
     <domínio>_scan_<data_hora>.log
     ```
     
-    ### Exemplo de saída:
+     Exemplo de saída:
     
     ```
     exemplo.com_scan_20250111_154500.log
@@ -407,7 +407,7 @@ Ao executar o script com a URL `https://www.exemplo.com/`, o seguinte relatório
 Relatório gerado: exemplo.com_scan_20250111_154500.html
 ```
 
-### **Log:**
+ **Log:**
 
 ```bash
 Log gerado: exemplo.com_scan_20250111_154500.log
@@ -415,14 +415,14 @@ Log gerado: exemplo.com_scan_20250111_154500.log
 
 * * *
 
-## **Notas Adicionais**
+### **Notas Adicionais**
 
 - Certifique-se de ter permissão para escanear o site antes de iniciar o processo.
 - Para ajustar configurações de escaneamento, edite o arquivo `gen.conf` gerado automaticamente após a execução do script.
 
 * * *
 
-## **Melhorias Futuras**
+### **Melhorias Futuras**
 
 - Adicionar suporte a múltiplas URLs em uma única execução.
 - Integração com ferramentas de CI/CD para automação contínua.
@@ -431,7 +431,7 @@ Log gerado: exemplo.com_scan_20250111_154500.log
 
 * * *
 
-## **Contato**
+### **Contato**
 
 Autor: Vinicius Reis
 E-mail: [contato](mailto:reisvmr@gmail.com)
